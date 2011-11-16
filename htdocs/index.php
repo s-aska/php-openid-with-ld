@@ -24,10 +24,6 @@ dispatch('/try_auth', function(){
     $openid = $_GET['openid_identifier'];
     $consumer = getConsumer();
     $auth_request = $consumer->begin($openid);
-    if ($auth_request->endpoint->server_url === 'http://auth.livedoor.com/openid/server') {
-        $auth_request->endpoint->server_url = 'https://auth.livedoor.com/openid/server';
-        $auth_request = $consumer->beginWithoutDiscovery($auth_request->endpoint);
-    }
     if (!$auth_request) {
         return "auth_request is null.";
     }
